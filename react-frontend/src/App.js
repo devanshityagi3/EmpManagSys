@@ -1,21 +1,23 @@
 import './App.css';
-import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
+import {BrowserRouter , Route, Routes} from 'react-router-dom';
 import FooterComponent from './components/FooterComponent';
 import HeaderComponent from './components/HeaderComponent';
 import ListEmployeeComponent from './components/ListEmployeeComponent';
+import CreateEmployeeComponent from './components/CreateEmployeeComponent';
 function App() {
   return (
     <div>
-      <Router>
+      <BrowserRouter>
         <HeaderComponent />
         <div className="container">
-          <Switch>
-            <Route path="/" Component={ListEmployeeComponent}></Route>
+          <Routes>
+            <Route path="/" exact Component={ListEmployeeComponent}></Route>
             <Route path="/employees" Component={ListEmployeeComponent}></Route>
-          </Switch>
+            <Route path="/add-employee" Component={CreateEmployeeComponent}></Route>
+          </Routes>
         </div>
         <FooterComponent />
-      </Router>
+      </BrowserRouter>
     </div>
   );
 }

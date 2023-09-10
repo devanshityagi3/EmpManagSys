@@ -1,13 +1,20 @@
 import React, { Component } from 'react'
 import EmployeeService from '../services/EmployeeService';
+import {AiOutlineUserAdd} from "react-icons/ai"
 
 export default class ListEmployeeComponent extends Component {
-    constructor(props) {
+    
+  constructor(props) {
         super(props)
 
         this.state = {
             employees: []
         }
+        this.addEmployee= this.addEmployee.bind(this);
+    }
+
+    addEmployee(){
+      this.props.history.push('/add-employee'); //react router provides history object
     }
 
     componentDidMount(){
@@ -21,14 +28,19 @@ export default class ListEmployeeComponent extends Component {
     return (
       <div>
         <h2 className='text-center font-extrabold mt-10 text-3xl'>Employees List</h2>
-        <div className='mt-10'>
-          <table className='flex justify-center drop-shadow-lg'>
+        <div className=''>
+          <button className='rounded' onClick={this.addEmployee}>Add
+            <AiOutlineUserAdd />
+          </button>
+        </div>
+        <div className='mt-10 flex justify-center'>
+          <table className='drop-shadow-lg'>
             <thead>
               <tr>
-                <th className='border-4 border-slate-200 p-6 '>Employee Firstname</th>
-                <th className='border-4 border-slate-200 p-6'>Employee Lastname</th>
-                <th className='border-4 border-slate-200 p-6'>Employee Email Id</th>
-                <th className='border-4 border-slate-200 p-6'>Actions</th>
+                <th className='border-4 border-blue-200 p-6 '>Employee Firstname</th>
+                <th className='border-4 border-blue-200 p-6'>Employee Lastname</th>
+                <th className='border-4 border-blue-200 p-6'>Employee Email Id</th>
+                <th className='border-4 border-blue-200 p-6'>Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -36,9 +48,9 @@ export default class ListEmployeeComponent extends Component {
                 this.state.employees.map(
                   employee => 
                   <tr key={employee.id}>
-                      <td>{employee.firstname}</td>
-                      <td>{employee.lastname}</td>
-                      <td>{employee.emailid}</td>
+                      <td className='border-4 text-center border-blue-200 p-2' >{employee.firstname}</td>
+                      <td className='border-4 text-center border-blue-200 p-2' >{employee.lastname}</td>
+                      <td className='border-4 text-center border-blue-200 p-2' >{employee.emailId}</td>
                   </tr>
                 )
               }
